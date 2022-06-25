@@ -4,17 +4,16 @@
  * @return {number[]}
  */
 var twoSum = function (nums, target) {
-  const map = {};
-  const has = Object.prototype.hasOwnProperty;
+  const map = new Map();
 
   for (let i = 0; i < nums.length; i += 1) {
     const num = nums[i];
 
-    if (has.call(map, num)) {
-      return [map[num], i];
+    if (map.has(num)) {
+      return [map.get(num), i];
     }
 
-    map[target - num] = i;
+    map.set(target - num, i);
   }
 
   return [];
