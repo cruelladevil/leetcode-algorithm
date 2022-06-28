@@ -5,13 +5,13 @@
 var checkValid = function (matrix) {
   const n = matrix.length;
 
-  for (let i = 0; i < n; i += 1) {
+  for (let row = 0; row < n; row += 1) {
     const rowSet = new Set();
     const colSet = new Set();
 
-    for (let j = 0; j < n; j += 1) {
-      rowSet.add(matrix[i][j]);
-      colSet.add(matrix[j][i]);
+    for (let col = 0; col < n; col += 1) {
+      rowSet.add(matrix[row][col]);
+      colSet.add(matrix[col][row]);
     }
 
     if (rowSet.size !== n || colSet.size !== n) return false;
