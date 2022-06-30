@@ -6,30 +6,22 @@
  * @return {number[][]}
  */
 var floodFill = function (image, sr, sc, newColor) {
-  const tmp = image.map((colors) => [...colors]);
-  const originalColor = tmp[sr][sc];
+  const targetColor = image[sr][sc];
 
-  const fill = (img, row, col) => {
-    if (
-      row < 0 ||
-      col < 0 ||
-      row >= img.length ||
-      col >= img[0].length ||
-      img[row][col] === newColor ||
-      img[row][col] !== originalColor
-    ) {
-      return;
-    }
+  const fillImageFrom = function fill(row, col) {
+    const isOutOfImage = row < 0 || col < 0 || row >= image.length || col >= image[0].length;
 
-    img[row][col] = newColor;
+    if (isOutOfImage || image[row][col] === newColor || image[row][col] !== targetColor) return;
 
-    fill(img, row - 1, col);
-    fill(img, row + 1, col);
-    fill(img, row, col - 1);
-    fill(img, row, col + 1);
+    image[row][col] = newColor;
+
+    fill(row - 1, col);
+    fill(row + 1, col);
+    fill(row, col - 1);
+    fill(row, col + 1);
   };
 
-  fill(tmp, sr, sc);
+  fillImageFrom(sr, sc);
 
-  return tmp;
+  return image;
 };
