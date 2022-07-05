@@ -10,23 +10,41 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-var preorderTraversal = function (root) {
-  if (!root) return [];
+// Recursive
+var preorderTraversalRecursive = function (root) {
+  const result = [];
 
-  const visit = [];
+  const traverse = (node) => {
+    if (node === null) return;
+
+    result.push(node.val);
+    traverse(node.left);
+    traverse(node.right);
+  };
+
+  traverse(root);
+
+  return result;
+};
+
+// Stack
+var preorderTraversalStack = function (root) {
+  if (root === null) return [];
+
+  const result = [];
   const stack = [root];
 
   while (stack.length > 0) {
     const node = stack.pop();
-    visit.push(node.val);
+    result.push(node.val);
 
-    if (node.right) {
+    if (node.right !== null) {
       stack.push(node.right);
     }
-    if (node.left) {
+    if (node.left !== null) {
       stack.push(node.left);
     }
   }
 
-  return visit;
+  return result;
 };
