@@ -11,7 +11,7 @@
  * @return {number[]}
  */
 // Recursive
-var inorderTraversalRecursive = function (root) {
+var inorderTraversal = function (root) {
   const result = [];
 
   const traverse = (node) => {
@@ -28,7 +28,7 @@ var inorderTraversalRecursive = function (root) {
 };
 
 // Stack
-var inorderTraversalStack = function (root) {
+var inorderTraversal = function (root) {
   const result = [];
   const stack = [];
   let node = root;
