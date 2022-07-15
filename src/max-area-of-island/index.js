@@ -5,10 +5,12 @@
 var maxAreaOfIsland = function (grid) {
   const ISLAND = 1;
   const ISLAND_CHECKED = -1;
-  let maxIslandArea = 0;
+  const m = grid.length;
+  const n = grid[0].length;
+  let maxArea = 0;
 
   const getIslandArea = (row, col) => {
-    const isOutOfGrid = row < 0 || col < 0 || row >= grid.length || col >= grid[0].length;
+    const isOutOfGrid = row < 0 || col < 0 || row >= m || col >= n;
 
     if (isOutOfGrid || grid[row][col] !== ISLAND) return 0;
 
@@ -22,11 +24,11 @@ var maxAreaOfIsland = function (grid) {
     return 1 + upArea + downArea + leftArea + rightArea;
   };
 
-  for (let i = 0; i < grid.length; i += 1) {
-    for (let j = 0; j < grid[0].length; j += 1) {
-      if (grid[i][j] === ISLAND) maxIslandArea = Math.max(maxIslandArea, getIslandArea(i, j));
+  for (let r = 0; r < m; r += 1) {
+    for (let c = 0; c < n; c += 1) {
+      if (grid[r][c] === ISLAND) maxArea = Math.max(maxArea, getIslandArea(r, c));
     }
   }
 
-  return maxIslandArea;
+  return maxArea;
 };
