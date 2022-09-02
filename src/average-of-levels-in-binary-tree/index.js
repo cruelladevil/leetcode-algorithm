@@ -11,19 +11,17 @@
  * @return {number[]}
  */
 var averageOfLevels = function (root) {
-  const count = [];
-  const sum = [];
+  const levelSums = [];
 
   const traverse = (node, level) => {
     if (node === null) return;
 
-    if (!count[level]) {
-      count[level] = 0;
-      sum[level] = 0;
+    if (!levelSums[level]) {
+      levelSums[level] = { count: 0, sum: 0 };
     }
 
-    count[level] += 1;
-    sum[level] += node.val;
+    levelSums[level].count += 1;
+    levelSums[level].sum += node.val;
 
     traverse(node.left, level + 1);
     traverse(node.right, level + 1);
@@ -31,9 +29,5 @@ var averageOfLevels = function (root) {
 
   traverse(root, 0);
 
-  for (let level = 0; level < sum.length; level += 1) {
-    sum[level] /= count[level];
-  }
-
-  return sum;
+  return levelSums.map(({ sum, count }) => sum / count);
 };
