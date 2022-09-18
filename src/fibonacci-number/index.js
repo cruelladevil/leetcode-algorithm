@@ -5,12 +5,12 @@
 var fib = function (n) {
   if (n < 2) return n;
 
-  let previous = 0;
-  let current = 1;
+  let prev = 0;
+  let curr = 1;
 
   for (let i = 2; i <= n; i += 1) {
-    [previous, current] = [current, previous + current];
+    [prev, curr] = [curr, prev + curr];
   }
 
-  return current;
+  return curr;
 };
