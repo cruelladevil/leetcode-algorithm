@@ -3,14 +3,13 @@
  * @return {number}
  */
 var rob = function (nums) {
-  let maxAtOneBefore = 0;
-  let maxAtCurrent = 0;
+  let prev = 0;
+  let curr = 0;
 
-  nums.forEach((num) => {
-    const maxRobValue = Math.max(maxAtOneBefore + num, maxAtCurrent);
-    maxAtOneBefore = maxAtCurrent;
-    maxAtCurrent = maxRobValue;
+  nums.forEach((money) => {
+    const next = Math.max(prev + money, curr);
+    [prev, curr] = [curr, next];
   });
 
-  return maxAtCurrent;
+  return curr;
 };
