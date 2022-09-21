@@ -5,20 +5,20 @@
  */
 var areAlmostEqual = function (s1, s2) {
   let diffCount = 0;
-  let diffIndex1 = -1;
-  let diffIndex2 = -1;
+  let left = -1;
+  let right = -1;
 
   for (let i = 0; i < s1.length; i += 1) {
-    const charS1 = s1.charAt(i);
-    const charS2 = s2.charAt(i);
+    const s1Char = s1.charAt(i);
+    const s2Char = s2.charAt(i);
 
-    if (charS1 !== charS2) {
+    if (s1Char !== s2Char) {
       diffCount += 1;
 
       if (diffCount === 1) {
-        diffIndex1 = i;
+        left = i;
       } else {
-        diffIndex2 = i;
+        right = i;
       }
     }
 
@@ -26,8 +26,9 @@ var areAlmostEqual = function (s1, s2) {
   }
 
   const isPossibleToSwap =
-    s1.charAt(diffIndex1) === s2.charAt(diffIndex2) &&
-    s1.charAt(diffIndex2) === s2.charAt(diffIndex1);
+    diffCount === 2 &&
+    s1.charAt(left) === s2.charAt(right) &&
+    s1.charAt(right) === s2.charAt(left);
 
-  return diffCount === 0 || (diffCount === 2 && isPossibleToSwap);
+  return diffCount === 0 || isPossibleToSwap;
 };
