@@ -3,13 +3,13 @@
  * @return {number}
  */
 var maxSubArray = function (nums) {
-  let sum = 0;
-  let max = nums[0];
+  let curSum = 0;
+  let maxSum = nums[0];
 
   nums.forEach((num) => {
-    sum = Math.max(sum + num, num);
-    max = Math.max(max, sum);
+    curSum = Math.max(curSum + num, num);
+    maxSum = Math.max(maxSum, curSum);
   });
 
-  return max;
+  return maxSum;
 };
