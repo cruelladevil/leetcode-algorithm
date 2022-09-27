@@ -11,15 +11,15 @@
  * @return {number}
  */
 var sumOfLeftLeaves = function (root) {
-  const traverse = (node, isLeft) => {
+  const dfs = (node, isLeft = false) => {
     if (node === null) return 0;
 
     if (node.left === null && node.right === null) {
       return isLeft ? node.val : 0;
     }
 
-    return traverse(node.left, true) + traverse(node.right, false);
+    return dfs(node.left, true) + dfs(node.right);
   };
 
-  return traverse(root, false);
+  return dfs(root);
 };
