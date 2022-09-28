@@ -6,11 +6,11 @@ var containsDuplicate = function (nums) {
   const set = new Set();
 
   for (let i = 0; i < nums.length; i += 1) {
-    const number = nums[i];
+    const num = nums[i];
 
-    if (set.has(number)) return true;
+    if (set.has(num)) return true;
 
-    set.add(number);
+    set.add(num);
   }
 
   return false;
