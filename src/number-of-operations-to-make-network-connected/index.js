@@ -14,7 +14,6 @@ var makeConnected = function (n, connections) {
     }
     return parents[i];
   };
-
   const mergeParent = (a, b) => {
     const parentA = findParent(a);
     const parentB = findParent(b);
@@ -32,8 +31,8 @@ var makeConnected = function (n, connections) {
 
   let parentCount = 0;
 
-  parents.forEach((v, i) => {
-    if (v === i) parentCount += 1;
+  parents.forEach((parent, i) => {
+    if (parent === i) parentCount += 1;
   });
 
   return parentCount - 1;
