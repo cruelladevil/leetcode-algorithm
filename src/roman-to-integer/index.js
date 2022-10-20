@@ -12,18 +12,19 @@ var romanToInt = function (s) {
     D: 500,
     M: 1000,
   };
-  let number = 0;
+
+  let num = 0;
 
   for (let i = 0; i < s.length; i += 1) {
-    const current = map[s[i]];
-    const next = map[s[i + 1]];
+    const curr = map[s.charAt(i)];
+    const next = map[s.charAt(i + 1)] || 0;
 
-    if (current < next) {
-      number -= current;
+    if (curr >= next) {
+      num += curr;
     } else {
-      number += current;
+      num -= curr;
     }
   }
 
-  return number;
+  return num;
 };
