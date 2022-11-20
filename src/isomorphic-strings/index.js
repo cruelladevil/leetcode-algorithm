@@ -11,10 +11,10 @@ var isIsomorphic = function (s, t) {
     const sChar = s.charAt(i);
     const tChar = t.charAt(i);
 
-    if (map.has(sChar)) {
-      if (map.get(sChar) !== tChar) return false;
-    } else {
-      if (set.has(tChar)) return false;
+    if (map.has(sChar) && map.get(sChar) !== tChar) {
+      return false;
+    } else if (!map.has(sChar) && set.has(tChar)) {
+      return false;
     }
 
     map.set(sChar, tChar);
