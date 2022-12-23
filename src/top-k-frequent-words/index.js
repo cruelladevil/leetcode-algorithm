@@ -4,22 +4,18 @@
  * @return {string[]}
  */
 var topKFrequent = function (words, k) {
-  const map = {};
+  const countMap = words.reduce((map, word) => {
+    map[word] = (map[word] || 0) + 1;
+    return map;
+  }, {});
 
-  words.forEach((word) => {
-    if (!map[word]) map[word] = 0;
-    map[word] += 1;
-  });
-
-  const countSort = Object.keys(map).sort((a, b) => {
-    const countCompare = map[b] - map[a];
-
-    if (countCompare === 0) {
+  const countSorted = Object.keys(countMap).sort((a, b) => {
+    if (countMap[a] === countMap[b]) {
       return a.localeCompare(b);
     } else {
-      return countCompare;
+      return countMap[b] - countMap[a];
     }
   });
 
-  return countSort.slice(0, k);
+  return countSorted.slice(0, k);
 };
