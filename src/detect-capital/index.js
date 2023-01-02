@@ -5,8 +5,8 @@
 var detectCapitalUse = function (word) {
   const isUpperCase = word === word.toUpperCase();
   const isLowerCase = word === word.toLowerCase();
-  const isPascalCase =
+  const isTitleCase =
     word === word.slice(0, 1).toUpperCase() + word.slice(1).toLowerCase();
 
-  return isUpperCase || isLowerCase || isPascalCase;
+  return isUpperCase || isLowerCase || isTitleCase;
 };
