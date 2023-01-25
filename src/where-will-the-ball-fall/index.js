@@ -12,9 +12,11 @@ var findBall = function (grid) {
 
     for (let row = 0; row < m; row += 1) {
       const nextCol = currCol + grid[row][currCol];
-      const isStuck = nextCol < 0 || nextCol >= n || grid[row][currCol] !== grid[row][nextCol];
 
-      if (isStuck) return STUCK;
+      const isOutOfGrid = nextCol < 0 || nextCol >= n;
+      const isStuckSlope = grid[row][currCol] !== grid[row][nextCol];
+
+      if (isOutOfGrid || isStuckSlope) return STUCK;
 
       currCol = nextCol;
     }
@@ -22,8 +24,7 @@ var findBall = function (grid) {
     return currCol;
   };
 
-  const balls = Array.from({ length: n }, (_, col) => col);
-  const result = balls.map((col) => moveBall(col));
+  const balls = Array.from({ length: n }, (_, i) => i);
 
-  return result;
+  return balls.map((col) => moveBall(col));
 };
