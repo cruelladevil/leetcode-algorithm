@@ -13,21 +13,21 @@
  * @return {TreeNode}
  */
 var addOneRow = function (root, val, depth) {
-  let dummy = new TreeNode(val, root, null);
+  const dummy = new TreeNode(val, root, null);
 
-  const dfs = (node, d = 0) => {
+  const dfs = (node, destination, depth = 1) => {
     if (node === null) return;
 
-    if (d === depth - 1) {
+    if (depth === destination) {
       node.left = new TreeNode(val, node.left, null);
       node.right = new TreeNode(val, null, node.right);
     }
 
-    dfs(node.left, d + 1);
-    dfs(node.right, d + 1);
+    dfs(node.left, destination, depth + 1);
+    dfs(node.right, destination, depth + 1);
   };
 
-  dfs(dummy);
+  dfs(dummy, depth);
 
   return dummy.left;
 };
