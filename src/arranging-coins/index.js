@@ -8,7 +8,7 @@ var arrangeCoins = function (n) {
 
   while (left <= right) {
     const middle = Math.floor((left + right) / 2);
-    const sum = ((1 + middle) * middle) / 2;
+    const sum = (1 + middle) * (middle / 2);
 
     if (sum === n) return middle;
 
