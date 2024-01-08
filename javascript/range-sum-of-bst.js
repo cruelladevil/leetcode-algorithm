@@ -13,23 +13,27 @@
  * @return {number}
  */
 var rangeSumBST = function (root, low, high) {
-  const traverse = (node, low, high) => {
-    if (node === null) return 0;
+  const traverse = (node) => {
+    if (node === null) {
+      return 0;
+    }
 
     let sum = 0;
 
-    if (node.val > low) {
-      sum += traverse(node.left, low, high);
-    }
-    if (node.val < high) {
-      sum += traverse(node.right, low, high);
-    }
     if (node.val >= low && node.val <= high) {
       sum += node.val;
+    }
+
+    if (node.val > low) {
+      sum += traverse(node.left);
+    }
+
+    if (node.val < high) {
+      sum += traverse(node.right);
     }
 
     return sum;
   };
 
-  return traverse(root, low, high);
+  return traverse(root);
 };
